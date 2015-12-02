@@ -208,7 +208,10 @@ Flickity.prototype._filterFindCellElements = function( elems ) {
 // goes through all children
 Flickity.prototype.reloadCells = function() {
   // collection of item elements
-  this.cells = this._makeCells( this.slider.children );
+  var cells = (this.options.cellSelector && this.slider.querySelectorAll(this.options.cellSelector).length) ?
+    this.slider.querySelectorAll(this.options.cellSelector) : this.slider.children;
+
+  this.cells = this._makeCells( cells );
   this.positionCells();
   this._getWrapShiftCells();
   this.setGallerySize();
